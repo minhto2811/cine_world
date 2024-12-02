@@ -1,12 +1,12 @@
 import 'package:cine_world/data/models/preview.dart';
-import 'package:cine_world/data/services/api_services.dart';
+import 'package:cine_world/data/repositories/remote/film_remote_repository.dart';
 
 class GetPreviewsUseCase {
-  final ApiService _apiService;
+  final FilmRemoteRepository _filmRemoteRepository;
 
-  const GetPreviewsUseCase({required ApiService apiService})
-      : _apiService = apiService;
+  const GetPreviewsUseCase({required FilmRemoteRepository filmRemoteRepository})
+      : _filmRemoteRepository = filmRemoteRepository;
 
   Future<List<Preview>> call({required String path, required int page}) async =>
-      await _apiService.getPreviews(path: path, page: page);
+      await _filmRemoteRepository.getPreviews(path: path, page: page);
 }

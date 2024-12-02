@@ -1,16 +1,23 @@
 class Episodes {
   final String serverName; //server_name
-  final ServerData serverData; //server_data
+  final List<ServerData> serverData; //server_data
 
   const Episodes({
     required this.serverName,
     required this.serverData,
   });
 
+  static List<Episodes> parseEpisodesList(List<dynamic> jsonList) {
+    return jsonList
+        .map((e) => Episodes.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
   factory Episodes.fromJson(Map<String, dynamic> json) {
     return Episodes(
       serverName: json['server_name'],
-      serverData: ServerData.fromJson(json['server_data']),
+      serverData:
+          ServerData.parseServerDataList(json['server_data'] as List<dynamic>),
     );
   }
 }
@@ -29,6 +36,12 @@ class ServerData {
     required this.linkEmbed,
     required this.linkM3u8,
   });
+
+  static List<ServerData> parseServerDataList(List<dynamic> jsonList) {
+    return jsonList
+        .map((e) => ServerData.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
 
   factory ServerData.fromJson(Map<String, dynamic> json) {
     return ServerData(

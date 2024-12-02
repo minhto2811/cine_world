@@ -1,3 +1,4 @@
+import 'package:cine_world/presentation/screens/film/film_screen.dart';
 import 'package:cine_world/presentation/screens/home/home_screen.dart';
 import 'package:cine_world/presentation/screens/introduction/introduction_screen.dart';
 import 'package:cine_world/presentation/screens/splash/splash_screen.dart';
@@ -13,11 +14,13 @@ class MyRoute {
   static const splash = '/splash';
   static const introduction = '/introduction';
   static const home = '/home';
+  static const film = '/film';
 
   static Map<String, Widget Function(BuildContext context)> routes = {
     splash: (_) => const SplashScreen(),
-    introduction: (_) =>  IntroductionScreen(),
+    introduction: (_) => IntroductionScreen(),
     home: (_) => const HomeScreen(),
+    film: (_) => const FilmScreen(),
   };
 
   static toast(String message,

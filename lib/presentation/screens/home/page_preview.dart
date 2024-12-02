@@ -1,9 +1,8 @@
 import 'package:cine_world/core/di/injections.dart';
-import 'package:cine_world/core/extensions/context.dart';
 import 'package:cine_world/generated/l10n.dart';
 import 'package:cine_world/logic/bloc/page_preview/page_preview_bloc.dart';
-import 'package:cine_world/presentation/components/latest_release_widget.dart';
-import 'package:cine_world/presentation/route.dart';
+import 'package:cine_world/presentation/components/my_error_widget.dart';
+import 'package:cine_world/presentation/components/preview_film.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,7 +28,7 @@ class _PagePreviewState extends State<PagePreview>
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels + MyRoute.context.height * 0.1 >=
+    if (_scrollController.position.pixels - 10 >=
         _scrollController.position.maxScrollExtent) {
       _bloc.add(const LoadMoreEvent());
     }
@@ -48,7 +47,8 @@ class _PagePreviewState extends State<PagePreview>
     return BlocBuilder<PagePreviewBloc, PagePreviewState>(
       bloc: _bloc,
       buildWhen: (previous, current) =>
-          current is LoadedState || current is ErrorState,
+          current is LoadedState ||
+          (current is ErrorState && previous is! ErrorState),
       builder: (context, state) {
         if (state is LoadedState) {
           return Scrollbar(
@@ -69,50 +69,20 @@ class _PagePreviewState extends State<PagePreview>
                   childAspectRatio: 7 / 10),
               itemBuilder: (context, index) {
                 final model = state.movies[index];
-                return LatestReleaseWidget(key: Key(model.id), model: model);
+                return PreviewFilm(key: Key(model.id), model: model);
               },
             ),
           );
         }
         if (state is ErrorState) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/error.png',
-                width: 260,
-              ),
-              Text(
-                S.current.an_error_occurred,
-                style: context.textTheme.bodyMedium,
-              ),
-              const SizedBox(height: 16),
-              GestureDetector(
-                  onTap: () => _bloc.add(const LoadMoreEvent()),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.refresh_outlined,
-                        color: Color(0xFFFF5510),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        S.current.refresh,
-                        style: context.textTheme.bodyLarge!.copyWith(
-                          color: const Color(0xFFFF5510),
-                        ),
-                      )
-                    ],
-                  )),
-              const SizedBox(height: 80),
-            ],
+          return MyErrorWidget(
+            onTap: () => _bloc.add(const LoadMoreEvent()),
+            title: S.current.an_error_occurred,
+            asset: 'error',
           );
         }
         return const Center(
-            child: CircularProgressIndicator(
-          color: Color(0xFFFF5510),
-        ));
+            child: CircularProgressIndicator(color: Color(0xFFFF5510)));
       },
     );
   }

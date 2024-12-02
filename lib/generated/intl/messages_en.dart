@@ -22,11 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "actors": MessageLookupByLibrary.simpleMessage("Actors"),
         "an_error_occurred": MessageLookupByLibrary.simpleMessage(
             "An error occurred, please try again."),
         "app_name": MessageLookupByLibrary.simpleMessage("Cine World"),
         "cartoons": MessageLookupByLibrary.simpleMessage("Cartoons"),
+        "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "country": MessageLookupByLibrary.simpleMessage("Country"),
+        "director": MessageLookupByLibrary.simpleMessage("Director"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
+        "duration": MessageLookupByLibrary.simpleMessage("Duration"),
         "hint_slogan": MessageLookupByLibrary.simpleMessage(
             "Step into a world of endless stories and unforgettable moments, where every movie you watch takes you on a journey like no other."),
         "hold_on": MessageLookupByLibrary.simpleMessage(
@@ -47,12 +52,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "latest_release":
             MessageLookupByLibrary.simpleMessage("Latest Release"),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
+        "movies_you_may_like":
+            MessageLookupByLibrary.simpleMessage("Movies You May Like"),
+        "quality": MessageLookupByLibrary.simpleMessage("Quality"),
         "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "series": MessageLookupByLibrary.simpleMessage("Series"),
+        "server_name": MessageLookupByLibrary.simpleMessage("Server Name"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "slogan": MessageLookupByLibrary.simpleMessage(
             "Watch movies, enjoy every moment."),
-        "tv_shows": MessageLookupByLibrary.simpleMessage("TV Shows")
+        "spoiler": MessageLookupByLibrary.simpleMessage("Spoiler"),
+        "tv_shows": MessageLookupByLibrary.simpleMessage("TV Shows"),
+        "year": MessageLookupByLibrary.simpleMessage("Year")
       };
 }

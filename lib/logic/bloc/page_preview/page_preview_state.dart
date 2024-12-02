@@ -9,6 +9,13 @@ final class PageInitial extends PagePreviewState {
   List<Object> get props => [];
 }
 
+final class LoadingState extends PagePreviewState {
+  const LoadingState();
+
+  @override
+  List<Object> get props => [];
+}
+
 
 final class LoadedState extends PagePreviewState {
   final List<Preview> movies;

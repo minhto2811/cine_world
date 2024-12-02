@@ -1,3 +1,5 @@
+import 'package:cine_world/data/models/episodes.dart';
+
 class Movie {
   final String id; //_id
   final String name;
@@ -25,8 +27,9 @@ class Movie {
   final int view; //0
   final List<String> actor;
   final List<String> director;
-  final MovieInfo category;
-  final MovieInfo country;
+  final List<MovieInfo> category;
+  final List<MovieInfo> country;
+  final List<Episodes> episodes;
 
   const Movie({
     required this.id,
@@ -57,38 +60,43 @@ class Movie {
     required this.director,
     required this.category,
     required this.country,
+    required this.episodes,
   });
 
-  factory Movie.fromJson(Map<String, dynamic> json) => Movie(
-        id: json['_id'],
-        name: json['name'],
-        slug: json['slug'],
-        created: Time.fromJson(json['created']),
-        modified: Time.fromJson(json['modified']),
-        originName: json['origin_name'],
-        content: json['content'],
-        type: json['type'],
-        status: json['status'],
-        posterUrl: json['poster_url'],
-        thumbUrl: json['thumb_url'],
-        isCopyright: json['is_copyright'],
-        subDocquyen: json['sub_docquyen'],
-        chieurap: json['chieurap'],
-        trailerUrl: json['trailer_url'],
-        time: json['time'],
-        episodeCurrent: json['episode_current'],
-        episodeTotal: json['episode_total'],
-        quality: json['quality'],
-        lang: json['lang'],
-        notify: json['notify'],
-        showtimes: json['showtimes'],
-        year: json['year'],
-        view: json['view'],
-        actor: List<String>.from(json['actor']),
-        director: List<String>.from(json['director']),
-        category: MovieInfo.fromJson(json['category']),
-        country: MovieInfo.fromJson(json['country']),
-      );
+  factory Movie.fromJson(Map<String, dynamic> response) {
+    final json = response['movie'];
+    return Movie(
+      id: json['_id'],
+      name: json['name'],
+      slug: json['slug'],
+      created: Time.fromJson(json['created']),
+      modified: Time.fromJson(json['modified']),
+      originName: json['origin_name'],
+      content: json['content'],
+      type: json['type'],
+      status: json['status'],
+      posterUrl: json['poster_url'],
+      thumbUrl: json['thumb_url'],
+      isCopyright: json['is_copyright'],
+      subDocquyen: json['sub_docquyen'],
+      chieurap: json['chieurap'],
+      trailerUrl: json['trailer_url'],
+      time: json['time'],
+      episodeCurrent: json['episode_current'],
+      episodeTotal: json['episode_total'],
+      quality: json['quality'],
+      lang: json['lang'],
+      notify: json['notify'],
+      showtimes: json['showtimes'],
+      year: json['year'],
+      view: json['view'],
+      actor: List<String>.from(json['actor']),
+      director: List<String>.from(json['director']),
+      category: MovieInfo.parseMovieInfoList(json['category'] as List<dynamic>),
+      country: MovieInfo.parseMovieInfoList(json['country'] as List<dynamic>),
+      episodes: Episodes.parseEpisodesList(response['episodes'] as List<dynamic>),
+    );
+  }
 }
 
 class MovieInfo {
@@ -97,6 +105,12 @@ class MovieInfo {
   final String slug;
 
   const MovieInfo({required this.id, required this.name, required this.slug});
+
+  static List<MovieInfo> parseMovieInfoList(List<dynamic> jsonList) {
+    return jsonList
+        .map((e) => MovieInfo.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
 
   factory MovieInfo.fromJson(Map<String, dynamic> json) =>
       MovieInfo(id: json['id'], name: json['name'], slug: json['slug']);
@@ -107,6 +121,5 @@ class Time {
 
   const Time({required this.time});
 
-  factory Time.fromJson(Map<String, dynamic> json) =>
-      Time(time: json['time']);
+  factory Time.fromJson(Map<String, dynamic> json) => Time(time: json['time']);
 }

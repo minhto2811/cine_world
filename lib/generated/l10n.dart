@@ -50,6 +50,106 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Movies You May Like`
+  String get movies_you_may_like {
+    return Intl.message(
+      'Movies You May Like',
+      name: 'movies_you_may_like',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quality`
+  String get quality {
+    return Intl.message(
+      'Quality',
+      name: 'quality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Year`
+  String get year {
+    return Intl.message(
+      'Year',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Director`
+  String get director {
+    return Intl.message(
+      'Director',
+      name: 'director',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Actors`
+  String get actors {
+    return Intl.message(
+      'Actors',
+      name: 'actors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Country`
+  String get country {
+    return Intl.message(
+      'Country',
+      name: 'country',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Duration`
+  String get duration {
+    return Intl.message(
+      'Duration',
+      name: 'duration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spoiler`
+  String get spoiler {
+    return Intl.message(
+      'Spoiler',
+      name: 'spoiler',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Server Name`
+  String get server_name {
+    return Intl.message(
+      'Server Name',
+      name: 'server_name',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Refresh`
   String get refresh {
     return Intl.message(

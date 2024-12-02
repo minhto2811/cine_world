@@ -1,7 +1,7 @@
 part of 'injections.dart';
 
 void appInject() {
-  serviceInject();
+  repoInject();
   useCaseInject();
   cubitInject();
   blocInject();
