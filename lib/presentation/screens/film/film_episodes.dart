@@ -10,11 +10,11 @@ class FilmEpisodes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate(
-      childCount: episodes.length,
-      (context, index) => FilmEpisode(episode: episodes[index]),
-    ));
+    return SliverList.separated(
+      separatorBuilder: (context,index)=>const SizedBox(height: 16),
+        itemCount: episodes.length,
+        itemBuilder: (context, index) => FilmEpisode(episode: episodes[index]),
+    );
   }
 }
 
@@ -40,6 +40,7 @@ class FilmEpisode extends StatelessWidget {
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
+              addAutomaticKeepAlives: true,
               itemCount: episode.serverData.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,

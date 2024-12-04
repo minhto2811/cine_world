@@ -1,4 +1,5 @@
 
+
 import 'dart:developer';
 
 import 'package:cine_world/data/models/movie.dart';
@@ -24,7 +25,7 @@ class FilmBloc extends Bloc<FilmEvent, FilmState> {
     try {
       final slug = ModalRoute.of(event.context)!.settings.arguments as String;
       final movie = await _getFilmBySlugUseCase.call(slug: slug);
-      log(movie.toString());
+      log(movie.trailerUrl);
       emit(LoadedState(movie: movie));
     } catch (e) {
       emit(const ErrorState());

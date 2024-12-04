@@ -10,8 +10,9 @@ import 'package:toastification/toastification.dart';
 
 import 'generated/l10n.dart';
 
-void main() {
-  appInject();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await appInject();
   runApp(const MyApp());
 }
 

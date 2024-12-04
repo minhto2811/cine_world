@@ -11,7 +11,7 @@ class FilmPoster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 300,
+      expandedHeight: context.width * 1.3,
       pinned: true,
       backgroundColor: const Color(0xFFE84100),
       flexibleSpace: FlexibleSpaceBar(

@@ -27,6 +27,8 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+isar_version: &isar_version 3.1.0+1
+
 dependencies:
   flutter:
     sdk: flutter
@@ -48,6 +50,10 @@ dependencies:
   introduction_screen: ^3.1.14
   dio: ^5.7.0
   cached_network_image: ^3.4.1
+  youtube_player_flutter: ^9.1.1
+  isar: *isar_version
+  isar_flutter_libs: *isar_version
+  path_provider: ^2.1.5
 
 dependency_overrides:
   intl: ^0.19.0
@@ -62,6 +68,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+  isar_generator: *isar_version
+  build_runner: any
+  analyzer: ^5.13.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

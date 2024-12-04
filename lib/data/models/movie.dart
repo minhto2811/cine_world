@@ -1,10 +1,15 @@
 import 'package:cine_world/data/models/episodes.dart';
+import 'package:isar/isar.dart';
 
+@Collection()
 class Movie {
+  late Id mId;
   final String id; //_id
   final String name;
   final String slug;
+  @ignore
   final Time created;
+  @ignore
   final Time modified;
   final String originName; //origin_name
   final String content;
@@ -31,7 +36,7 @@ class Movie {
   final List<MovieInfo> country;
   final List<Episodes> episodes;
 
-  const Movie({
+  Movie({
     required this.id,
     required this.name,
     required this.slug,
@@ -61,7 +66,7 @@ class Movie {
     required this.category,
     required this.country,
     required this.episodes,
-  });
+  }) : mId = id.hashCode;
 
   factory Movie.fromJson(Map<String, dynamic> response) {
     final json = response['movie'];
@@ -94,7 +99,8 @@ class Movie {
       director: List<String>.from(json['director']),
       category: MovieInfo.parseMovieInfoList(json['category'] as List<dynamic>),
       country: MovieInfo.parseMovieInfoList(json['country'] as List<dynamic>),
-      episodes: Episodes.parseEpisodesList(response['episodes'] as List<dynamic>),
+      episodes:
+          Episodes.parseEpisodesList(response['episodes'] as List<dynamic>),
     );
   }
 }
@@ -115,6 +121,7 @@ class MovieInfo {
   factory MovieInfo.fromJson(Map<String, dynamic> json) =>
       MovieInfo(id: json['id'], name: json['name'], slug: json['slug']);
 }
+
 
 class Time {
   final String time;

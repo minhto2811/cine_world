@@ -1,7 +1,8 @@
 part of 'injections.dart';
 
-void appInject() {
-  repoInject();
+Future<void> appInject() async {
+  serviceInject();
+  await repoInject();
   useCaseInject();
   cubitInject();
   blocInject();

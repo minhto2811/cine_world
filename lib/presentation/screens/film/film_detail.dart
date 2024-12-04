@@ -1,43 +1,112 @@
+import 'package:cine_world/core/extensions/context.dart';
 import 'package:cine_world/data/models/movie.dart';
+import 'package:cine_world/presentation/components/video_youtube_parent.dart';
 import 'package:cine_world/presentation/screens/film/film_episodes.dart';
 import 'package:cine_world/presentation/screens/film/film_poster.dart';
 import 'package:cine_world/presentation/screens/film/film_related.dart';
 import 'package:cine_world/presentation/screens/film/film_spoiler.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class FilmDetail extends StatelessWidget {
+class FilmDetail extends StatefulWidget {
   const FilmDetail({super.key, required this.movie});
 
   final Movie movie;
 
   @override
+  State<FilmDetail> createState() => _FilmDetailState();
+}
+
+class _FilmDetailState extends State<FilmDetail> {
+  YoutubePlayerController? _controller;
+  ScrollController? _scrollController;
+  late double _offset;
+  bool _isPLaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.movie.trailerUrl.isNotEmpty) {
+      final id = YoutubePlayer.convertUrlToId(widget.movie.trailerUrl)!;
+      _controller = YoutubePlayerController(
+        initialVideoId: id,
+        flags: YoutubePlayerFlags(
+          mute: false,
+          autoPlay: false,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          showLiveFullscreenButton: false,
+          forceHD: true,
+          enableCaption: true,
+          captionLanguage: Intl.systemLocale.substring(0, 2),
+        ),
+      )..addListener(
+          () => setState(() => _isPLaying = _controller!.value.isPlaying));
+      _scrollController = ScrollController()
+        ..addListener(() => _offset = _scrollController!.offset);
+    }
+  }
+
+  @override
+  void deactivate() {
+    _controller?.pause();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    _scrollController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        FilmPoster(
-          url: movie.posterUrl,
-          title: movie.originName,
-        ),
-        hPad(12),
-        FilmSpoiler(
-          name: movie.name,
-          content: movie.content,
-          duration: movie.time,
-          country: movie.country.map((e) => e.name).join(', '),
-          category: movie.category.map((e) => e.name).join(', '),
-          actors: movie.actor.join(', '),
-          director: movie.director.join(', '),
-          year: movie.year,
-          quality: movie.quality,
-        ),
-        hPad(12),
-        FilmEpisodes(episodes: movie.episodes),
-        hPad(24),
-        FilmRelated(type: movie.type),
-        hPad(16),
-      ],
+    return VideoYoutubeParent(
+      controller: _controller,
+      onExitFullScreen: () => _scrollController!.animateTo(_offset,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut),
+      child: _buildBody(),
+      builder: (context, player) => _buildBody(player: player),
     );
   }
+
+  Widget _buildBody({Widget? player}) => CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          FilmPoster(
+            url: widget.movie.posterUrl,
+            title: widget.movie.originName,
+          ),
+          hPad(12),
+          FilmSpoiler(
+            name: widget.movie.name,
+            content: widget.movie.content,
+            duration: widget.movie.time,
+            country: widget.movie.country.map((e) => e.name).join(', '),
+            category: widget.movie.category.map((e) => e.name).join(', '),
+            actors: widget.movie.actor.join(', '),
+            director: widget.movie.director.join(', '),
+            year: widget.movie.year,
+            quality: widget.movie.quality,
+          ),
+          hPad(12),
+          if (player != null)
+            SliverAppBar(
+              pinned: _isPLaying,
+              automaticallyImplyLeading: false,
+              flexibleSpace: player,
+              toolbarHeight: context.width * 9 / 16 - context.padding.top,
+            ),
+          hPad(24),
+          FilmEpisodes(episodes: widget.movie.episodes),
+          hPad(24),
+          FilmRelated(type: widget.movie.type),
+          hPad(16),
+        ],
+      );
 
   SliverToBoxAdapter hPad(double value) =>
       SliverToBoxAdapter(child: SizedBox(height: value));

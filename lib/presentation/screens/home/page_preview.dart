@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cine_world/core/di/injections.dart';
 import 'package:cine_world/generated/l10n.dart';
 import 'package:cine_world/logic/bloc/page_preview/page_preview_bloc.dart';
@@ -19,6 +21,7 @@ class _PagePreviewState extends State<PagePreview>
     with AutomaticKeepAliveClientMixin {
   final _bloc = getIt<PagePreviewBloc>();
   final ScrollController _scrollController = ScrollController();
+  Timer? _timer;
 
   @override
   void initState() {
@@ -28,14 +31,17 @@ class _PagePreviewState extends State<PagePreview>
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels - 10 >=
+    if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent) {
+      if(_timer != null) return;
       _bloc.add(const LoadMoreEvent());
+      _timer = Timer(const Duration(seconds: 2), () => _timer = null);
     }
   }
 
   @override
   void dispose() {
+    _timer?.cancel();
     _bloc.close();
     _scrollController.dispose();
     super.dispose();
