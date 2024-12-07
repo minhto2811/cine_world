@@ -12,4 +12,10 @@ void useCaseInject() {
 
   getIt.registerLazySingleton<GetPreviewsLocalUseCase>(
       () => GetPreviewsLocalUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<GetFilmBySlugLocalUseCase>(
+      () => GetFilmBySlugLocalUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<InsertFilmLocalUseCase>(
+      () => InsertFilmLocalUseCase(database: getIt()));
 }

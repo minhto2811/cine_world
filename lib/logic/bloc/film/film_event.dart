@@ -12,3 +12,4 @@ final class InitialEvent extends FilmEvent {
   @override
   List<Object?> get props => [context];
 }
+

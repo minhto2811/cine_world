@@ -1,4 +1,4 @@
-import 'package:cine_world/presentation/screens/home/page_preview.dart';
+import 'package:cine_world/presentation/components/page_preview.dart';
 import 'package:flutter/material.dart';
 
 class HomePages extends StatelessWidget {

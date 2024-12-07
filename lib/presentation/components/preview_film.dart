@@ -1,15 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cine_world/core/extensions/context.dart';
 import 'package:cine_world/data/models/preview.dart';
-import 'package:cine_world/presentation/route.dart';
 import 'package:flutter/material.dart';
 
 class PreviewFilm extends StatelessWidget {
-  const PreviewFilm({super.key, required this.model});
+  const PreviewFilm({super.key, required this.model, required this.onTap});
 
   final Preview model;
+  final VoidCallback onTap;
 
-  onTap() => MyRoute.pushNamed(routeName: MyRoute.film, arguments: model.slug);
 
   @override
   Widget build(BuildContext context) {

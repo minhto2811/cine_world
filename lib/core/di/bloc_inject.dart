@@ -9,5 +9,9 @@ void blocInject() {
       ));
   getIt.registerFactory<FilmBloc>(() => FilmBloc(
         getFilmBySlugUseCase: getIt(),
+        insertFilmLocalUseCase: getIt(),
+        getFilmBySlugLocalUseCase: getIt(),
       ));
+
+  getIt.registerFactory<PlayVideoBloc>(() => PlayVideoBloc());
 }

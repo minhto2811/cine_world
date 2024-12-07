@@ -1,10 +1,13 @@
+import 'package:isar/isar.dart';
+part 'episodes.g.dart';
+@embedded
 class Episodes {
-  final String serverName; //server_name
-  final List<ServerData> serverData; //server_data
+  final String? serverName; //server_name
+  final List<ServerData>? serverData; //server_data
 
   const Episodes({
-    required this.serverName,
-    required this.serverData,
+    this.serverName,
+    this.serverData,
   });
 
   static List<Episodes> parseEpisodesList(List<dynamic> jsonList) {
@@ -22,19 +25,20 @@ class Episodes {
   }
 }
 
+@embedded
 class ServerData {
-  final String name;
-  final String slug;
-  final String filename;
-  final String linkEmbed; //link_embed
-  final String linkM3u8; //link_m3u8
+  final String? name;
+  final String? slug;
+  final String? filename;
+  final String? linkEmbed; //link_embed
+  final String? linkM3u8; //link_m3u8
 
   const ServerData({
-    required this.name,
-    required this.slug,
-    required this.filename,
-    required this.linkEmbed,
-    required this.linkM3u8,
+    this.name,
+    this.slug,
+    this.filename,
+    this.linkEmbed,
+    this.linkM3u8,
   });
 
   static List<ServerData> parseServerDataList(List<dynamic> jsonList) {

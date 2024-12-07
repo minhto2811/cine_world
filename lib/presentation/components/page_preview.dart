@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:cine_world/core/di/injections.dart';
+import 'package:cine_world/core/extensions/context.dart';
 import 'package:cine_world/generated/l10n.dart';
 import 'package:cine_world/logic/bloc/page_preview/page_preview_bloc.dart';
 import 'package:cine_world/presentation/components/my_error_widget.dart';
 import 'package:cine_world/presentation/components/preview_film.dart';
+import 'package:cine_world/presentation/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,11 +33,11 @@ class _PagePreviewState extends State<PagePreview>
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels >=
+    if (_scrollController.position.pixels + context.height >=
         _scrollController.position.maxScrollExtent) {
-      if(_timer != null) return;
+      if (_timer != null) return;
       _bloc.add(const LoadMoreEvent());
-      _timer = Timer(const Duration(seconds: 2), () => _timer = null);
+      _timer = Timer(const Duration(seconds: 1), () => _timer = null);
     }
   }
 
@@ -75,7 +77,12 @@ class _PagePreviewState extends State<PagePreview>
                   childAspectRatio: 7 / 10),
               itemBuilder: (context, index) {
                 final model = state.movies[index];
-                return PreviewFilm(key: Key(model.id), model: model);
+                return PreviewFilm(
+                    key: Key(model.id),
+                    model: model,
+                    onTap: () => MyRoute.pushNamed(
+                        routeName: MyRoute.film,
+                        arguments:model.slug));
               },
             ),
           );

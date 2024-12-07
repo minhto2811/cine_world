@@ -1,9 +1,9 @@
 import 'package:cine_world/core/extensions/context.dart';
 import 'package:cine_world/data/models/movie.dart';
 import 'package:cine_world/presentation/components/video_youtube_parent.dart';
+import 'package:cine_world/presentation/route.dart';
 import 'package:cine_world/presentation/screens/film/film_episodes.dart';
 import 'package:cine_world/presentation/screens/film/film_poster.dart';
-import 'package:cine_world/presentation/screens/film/film_related.dart';
 import 'package:cine_world/presentation/screens/film/film_spoiler.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -101,11 +101,13 @@ class _FilmDetailState extends State<FilmDetail> {
               toolbarHeight: context.width * 9 / 16 - context.padding.top,
             ),
           hPad(24),
-          FilmEpisodes(episodes: widget.movie.episodes),
+          FilmEpisodes(
+            episodes: widget.movie.episodes,
+            onTap: (serverData) => MyRoute.pushNamed(
+                arguments: serverData, routeName: MyRoute.playVideo),
+          ),
           hPad(24),
-          FilmRelated(type: widget.movie.type),
-          hPad(16),
-        ],
+                  ],
       );
 
   SliverToBoxAdapter hPad(double value) =>

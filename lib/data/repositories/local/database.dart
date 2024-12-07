@@ -13,6 +13,8 @@ abstract interface class Database {
       {required int offset, required String type});
 
   Future<void> insertFilm({required Movie movie});
+
+  Future<Movie?> getFilmBySlug({required String slug});
 }
 
 class DatabaseImpl implements Database {
@@ -22,7 +24,8 @@ class DatabaseImpl implements Database {
 
   static Future<DatabaseImpl> create() async {
     final dir = await getApplicationDocumentsDirectory();
-    final isar = await Isar.open([PreviewSchema], directory: dir.path);
+    final isar =
+        await Isar.open([PreviewSchema, MovieSchema], directory: dir.path);
     return DatabaseImpl._(isar);
   }
 
@@ -49,5 +52,13 @@ class DatabaseImpl implements Database {
 
   @override
   Future<void> insertFilm({required Movie movie}) async =>
-      await _isar.writeTxn(() => _isar.previews.put(movie), silent: true);
+      await _isar.writeTxn(() => _isar.movies.put(movie), silent: true);
+
+  @override
+  Future<Movie?> getFilmBySlug({required String slug}) async {
+    await _isar
+        .writeTxn(() => _isar.movies.where().slugEqualTo(slug).findFirst());
+    final query = _isar.movies.filter().slugEqualTo(slug).build();
+    return await query.findFirst();
+  }
 }

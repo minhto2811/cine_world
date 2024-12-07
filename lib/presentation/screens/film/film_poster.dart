@@ -13,17 +13,18 @@ class FilmPoster extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: context.width * 1.3,
       pinned: true,
-      backgroundColor: const Color(0xFFE84100),
       flexibleSpace: FlexibleSpaceBar(
         collapseMode: CollapseMode.pin,
         background: CachedNetworkImage(imageUrl: url, fit: BoxFit.cover),
         title: Text(
           title,
-          style: context.textTheme.titleLarge!.copyWith(color: Colors.white),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+            fontSize: 18,
+          ),
         ),
       ),
-      iconTheme: const IconThemeData(color: Colors.white),
-      actionsIconTheme: const IconThemeData(color: Colors.white),
     );
   }
 }

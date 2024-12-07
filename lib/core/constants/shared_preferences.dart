@@ -1,5 +1,6 @@
 
 
 class SpfConstants {
-  static const String languageCode = 'languageCode';
+  static const  languageCode = 'languageCode';
+  static const  theme = 'theme';
 }

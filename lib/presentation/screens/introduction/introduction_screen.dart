@@ -6,7 +6,6 @@ import 'package:introduction_screen/introduction_screen.dart' as ob;
 import '../../../generated/l10n.dart';
 
 class IntroductionScreen extends StatelessWidget {
-  IntroductionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +74,8 @@ class IntroductionScreen extends StatelessWidget {
     pageColor: Colors.white,
     imagePadding: EdgeInsets.zero,
   );
+
+  IntroductionScreen({super.key});
 
   List<ob.PageViewModel> get _pages => [
         ob.PageViewModel(

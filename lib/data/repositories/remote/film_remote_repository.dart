@@ -6,6 +6,7 @@ abstract interface class FilmRemoteRepository {
   Future<List<Preview>> getPreviews({required String path, required int page});
 
   Future<Movie> getMovieBySlug({required String slug});
+  Future<List<Preview>> getPreviewsByQuery({required String query});
 }
 
 class FilmRemoteRepositoryImpl implements FilmRemoteRepository {
@@ -37,5 +38,10 @@ class FilmRemoteRepositoryImpl implements FilmRemoteRepository {
         (response.data['items'] ?? response.data['data']['items']) as List;
     final type = path.split('/').last;
     return data.map((e) => Preview.fromJson(e, type)).toList();
+  }
+
+  @override
+  Future<List<Preview>> getPreviewsByQuery({required String query}) async{
+   throw UnimplementedError();
   }
 }

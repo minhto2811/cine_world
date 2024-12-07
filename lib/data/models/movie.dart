@@ -1,15 +1,14 @@
 import 'package:cine_world/data/models/episodes.dart';
 import 'package:isar/isar.dart';
-
+part 'movie.g.dart';
 @Collection()
 class Movie {
   late Id mId;
   final String id; //_id
   final String name;
+  @Index()
   final String slug;
-  @ignore
   final Time created;
-  @ignore
   final Time modified;
   final String originName; //origin_name
   final String content;
@@ -105,12 +104,13 @@ class Movie {
   }
 }
 
+@embedded
 class MovieInfo {
-  final String id;
-  final String name;
-  final String slug;
+  final String? id;
+  final String? name;
+  final String? slug;
 
-  const MovieInfo({required this.id, required this.name, required this.slug});
+  const MovieInfo({this.id, this.name, this.slug});
 
   static List<MovieInfo> parseMovieInfoList(List<dynamic> jsonList) {
     return jsonList
@@ -122,11 +122,11 @@ class MovieInfo {
       MovieInfo(id: json['id'], name: json['name'], slug: json['slug']);
 }
 
-
+@embedded
 class Time {
-  final String time;
+  final String? time;
 
-  const Time({required this.time});
+  const Time({this.time});
 
   factory Time.fromJson(Map<String, dynamic> json) => Time(time: json['time']);
 }

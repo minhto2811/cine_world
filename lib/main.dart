@@ -1,6 +1,7 @@
 import 'package:cine_world/core/di/injections.dart';
 import 'package:cine_world/core/extensions/string.dart';
 import 'package:cine_world/logic/cubit/language/language_cubit.dart';
+import 'package:cine_world/logic/cubit/theme/theme_cubit.dart';
 import 'package:cine_world/presentation/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         child: MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => getIt<LanguageCubit>()),
+            BlocProvider(create: (_) => getIt<ThemeCubit>()),
           ],
           child: const _MyApp(),
         ),
@@ -49,7 +51,9 @@ class _MyAppState extends State<_MyApp> {
   @override
   Widget build(BuildContext context) {
     final languageCode = context.watch<LanguageCubit>().state.languageCode;
+    final themeData = context.watch<ThemeCubit>().state;
     return MaterialApp(
+      theme: themeData,
       navigatorKey: MyRoute.navigatorKey,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
