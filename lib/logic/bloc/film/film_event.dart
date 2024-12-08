@@ -13,3 +13,20 @@ final class InitialEvent extends FilmEvent {
   List<Object?> get props => [context];
 }
 
+final class FavouriteEvent extends FilmEvent {
+  final bool isFavourite;
+
+  const FavouriteEvent({required this.isFavourite});
+
+  @override
+  List<Object?> get props => [isFavourite];
+}
+
+final class CheckFavouriteEvent extends FilmEvent {
+  final String slug;
+
+  const CheckFavouriteEvent({required this.slug});
+
+  @override
+  List<Object?> get props => [slug];
+}

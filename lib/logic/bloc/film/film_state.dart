@@ -27,3 +27,10 @@ final class ErrorState extends FilmState {
   @override
   List<Object> get props => [];
 }
+
+final class FavoriteState extends FilmState {
+  final bool isFavourite;
+  const FavoriteState({required this.isFavourite});
+  @override
+  List<Object> get props => [isFavourite];
+}

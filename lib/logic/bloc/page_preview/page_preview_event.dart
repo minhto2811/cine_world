@@ -21,3 +21,14 @@ final class LoadMoreEvent extends PagePreviewEvent {
   @override
   List<Object?> get props => [];
 }
+
+
+final class NavigateEvent extends PagePreviewEvent {
+  final String route;
+  final Object? arguments;
+
+  const NavigateEvent({required this.route, this.arguments});
+
+  @override
+  List<Object?> get props => [route, arguments];
+}

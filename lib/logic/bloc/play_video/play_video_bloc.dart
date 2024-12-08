@@ -35,6 +35,7 @@ class PlayVideoBloc extends Bloc<PlayVideoEvent, PlayVideoState> {
         looping: true,
         autoInitialize: true,
         allowFullScreen: true,
+        fullScreenByDefault: true,
         errorBuilder: (context, errorMessage) => Column(
               children: [
                 const Icon(Icons.info),
@@ -42,7 +43,7 @@ class PlayVideoBloc extends Bloc<PlayVideoEvent, PlayVideoState> {
               ],
             ),
         placeholder: const Center(
-            child: CircularProgressIndicator(color: Color(0xFFFF5510))),
+            child: CircularProgressIndicator()),
         zoomAndPan: true);
     add(ShowTitleEvent(
         title: chewieController!.isFullScreen ? null : data.name));

@@ -18,4 +18,28 @@ void useCaseInject() {
 
   getIt.registerLazySingleton<InsertFilmLocalUseCase>(
       () => InsertFilmLocalUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<CheckFavouriteUseCase>(
+      () => CheckFavouriteUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<InsertFavouriteUseCase>(
+      () => InsertFavouriteUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<DeleteFavouriteUseCase>(
+      () => DeleteFavouriteUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<GetFavouritesUseCase>(
+      () => GetFavouritesUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<SearchPreviewsUseCase>(
+      () => SearchPreviewsUseCase(filmRemoteRepository: getIt()));
+
+  getIt.registerLazySingleton<InsertSearchHistoryUseCase>(
+      () => InsertSearchHistoryUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<GetSearchHistoriesUseCase>(
+      () => GetSearchHistoriesUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<DeleteSearchHistoryUseCase>(
+      () => DeleteSearchHistoryUseCase(database: getIt()));
 }

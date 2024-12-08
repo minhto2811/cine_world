@@ -1,5 +1,6 @@
 import 'package:cine_world/core/extensions/context.dart';
 import 'package:cine_world/data/models/movie.dart';
+import 'package:cine_world/logic/bloc/film/film_bloc.dart';
 import 'package:cine_world/presentation/components/video_youtube_parent.dart';
 import 'package:cine_world/presentation/route.dart';
 import 'package:cine_world/presentation/screens/film/film_episodes.dart';
@@ -10,9 +11,10 @@ import 'package:intl/intl.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class FilmDetail extends StatefulWidget {
-  const FilmDetail({super.key, required this.movie});
+  const FilmDetail({super.key, required this.movie, required this.bloc});
 
   final Movie movie;
+  final FilmBloc bloc;
 
   @override
   State<FilmDetail> createState() => _FilmDetailState();
@@ -74,9 +76,11 @@ class _FilmDetailState extends State<FilmDetail> {
   }
 
   Widget _buildBody({Widget? player}) => CustomScrollView(
+    
         controller: _scrollController,
         slivers: [
           FilmPoster(
+            bloc: widget.bloc,
             url: widget.movie.posterUrl,
             title: widget.movie.originName,
           ),
@@ -107,7 +111,7 @@ class _FilmDetailState extends State<FilmDetail> {
                 arguments: serverData, routeName: MyRoute.playVideo),
           ),
           hPad(24),
-                  ],
+        ],
       );
 
   SliverToBoxAdapter hPad(double value) =>

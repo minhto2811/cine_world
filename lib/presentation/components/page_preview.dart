@@ -79,10 +79,9 @@ class _PagePreviewState extends State<PagePreview>
                 final model = state.movies[index];
                 return PreviewFilm(
                     key: Key(model.id),
-                    model: model,
-                    onTap: () => MyRoute.pushNamed(
-                        routeName: MyRoute.film,
-                        arguments:model.slug));
+                    onTap: () => _bloc.add(NavigateEvent(
+                        route: MyRoute.film, arguments: model.slug)),
+                    model: model);
               },
             ),
           );
@@ -94,8 +93,7 @@ class _PagePreviewState extends State<PagePreview>
             asset: 'error',
           );
         }
-        return const Center(
-            child: CircularProgressIndicator(color: Color(0xFFFF5510)));
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }

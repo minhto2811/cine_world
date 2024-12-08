@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "director": MessageLookupByLibrary.simpleMessage("Director"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "duration": MessageLookupByLibrary.simpleMessage("Duration"),
+        "favourite": MessageLookupByLibrary.simpleMessage("Favourite"),
         "hint_slogan": MessageLookupByLibrary.simpleMessage(
             "Step into a world of endless stories and unforgettable moments, where every movie you watch takes you on a journey like no other."),
         "hold_on": MessageLookupByLibrary.simpleMessage(

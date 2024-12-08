@@ -6,7 +6,9 @@ abstract interface class FilmRemoteRepository {
   Future<List<Preview>> getPreviews({required String path, required int page});
 
   Future<Movie> getMovieBySlug({required String slug});
-  Future<List<Preview>> getPreviewsByQuery({required String query});
+
+  Future<List<Preview>> searchPreviews(
+      {required String keyword, required int limit});
 }
 
 class FilmRemoteRepositoryImpl implements FilmRemoteRepository {
@@ -41,7 +43,16 @@ class FilmRemoteRepositoryImpl implements FilmRemoteRepository {
   }
 
   @override
-  Future<List<Preview>> getPreviewsByQuery({required String query}) async{
-   throw UnimplementedError();
+  Future<List<Preview>> searchPreviews(
+      {required String keyword, required int limit}) async {
+    final response = await _apiService.get('/v1/api/tim-kiem',
+        queryParameters: {'keyword': keyword, 'limit': limit});
+    if (response.statusCode != 200) throw Exception(response.statusCode);
+    final status = response.data['status'];
+    if (status is String && status != 'success') {
+      throw Exception(response.data['msg']);
+    }
+    final data = response.data['data']['items'] as List;
+    return data.map((e) => Preview.fromJson(e, '')).toList();
   }
 }

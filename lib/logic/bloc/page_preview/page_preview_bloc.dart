@@ -4,6 +4,7 @@ import 'package:cine_world/data/models/preview.dart';
 import 'package:cine_world/data/use_cases/get_previews_local_use_case.dart';
 import 'package:cine_world/data/use_cases/get_previews_use_case.dart';
 import 'package:cine_world/data/use_cases/insert_previews_local_use_case.dart';
+import 'package:cine_world/presentation/route.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,6 +22,7 @@ class PagePreviewBloc extends Bloc<PagePreviewEvent, PagePreviewState> {
         super(PageInitial()) {
     on<InitialEvent>(_init);
     on<LoadMoreEvent>(_loadMore);
+    on<NavigateEvent>(_navigate);
   }
 
   final GetPreviewsLocalUseCase _getPreviewsLocalUseCase;
@@ -66,6 +68,10 @@ class PagePreviewBloc extends Bloc<PagePreviewEvent, PagePreviewState> {
     _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
       _timer?.cancel();
     });
+  }
+
+  void _navigate(NavigateEvent event, Emitter<PagePreviewState> emit) async {
+    await MyRoute.pushNamed(routeName: event.route, arguments: event.arguments);
   }
 
   @override

@@ -1,7 +1,9 @@
+import 'package:cine_world/presentation/screens/favourite/favourite_screen.dart';
 import 'package:cine_world/presentation/screens/film/film_screen.dart';
 import 'package:cine_world/presentation/screens/home/home_screen.dart';
 import 'package:cine_world/presentation/screens/introduction/introduction_screen.dart';
 import 'package:cine_world/presentation/screens/play_video/play_video_screen.dart';
+import 'package:cine_world/presentation/screens/search/search_screen.dart';
 import 'package:cine_world/presentation/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
@@ -17,6 +19,8 @@ class MyRoute {
   static const home = '/home';
   static const film = '/film';
   static const playVideo = '/playVideo';
+  static const favourite = '/favourite';
+  static const search = '/search';
 
   static Map<String, Widget Function(BuildContext context)> routes = {
     splash: (_) => const SplashScreen(),
@@ -24,6 +28,8 @@ class MyRoute {
     home: (_) => const HomeScreen(),
     film: (_) => const FilmScreen(),
     playVideo: (_) => const PlayVideoScreen(),
+    favourite: (_) => const FavouriteScreen(),
+    search: (_) => const SearchScreen(),
   };
 
   static toast(String message,

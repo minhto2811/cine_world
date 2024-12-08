@@ -41,12 +41,10 @@ class _FilmScreenState extends State<FilmScreen> {
                     current is ErrorState,
                 builder: (context, state) {
                   if (state is LoadedState) {
-                    return FilmDetail(movie: state.movie);
+                    return FilmDetail(movie: state.movie, bloc: _bloc);
                   }
                   if (state is LoadingState) {
-                    return const Center(
-                        child: CircularProgressIndicator(
-                            color: Color(0xFFFF5510)));
+                    return const Center(child: CircularProgressIndicator());
                   }
                   if (state is ErrorState) {
                     return MyErrorWidget(
