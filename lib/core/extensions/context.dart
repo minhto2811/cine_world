@@ -1,3 +1,4 @@
+import 'package:cine_world/presentation/components/stt_dialog.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExtension on BuildContext {
@@ -10,4 +11,10 @@ extension ContextExtension on BuildContext {
   EdgeInsets get padding => _mediaQueryData.padding;
 
   MediaQueryData get _mediaQueryData => MediaQuery.of(this);
+
+  Future<String?> get speech async => await showDialog(
+      context: this,
+      useSafeArea: true,
+      barrierDismissible: false,
+      builder: (_) => const Dialog(child: SttDialog()));
 }

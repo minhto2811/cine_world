@@ -5,6 +5,7 @@ import 'package:cine_world/presentation/components/preview_film.dart';
 import 'package:cine_world/presentation/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class SearchResult extends StatelessWidget {
   const SearchResult({super.key, required this.bloc});
@@ -24,13 +25,35 @@ class SearchResult extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         if (state is ErrorState) {
-          return MyErrorWidget(
-            title: S.current.an_error_occurred,
-            asset: 'error',
+          return SizedBox(
+            width: double.infinity,
+            child: MyErrorWidget(
+              title: S.current.an_error_occurred,
+              asset: 'error',
+            ),
           );
         }
 
         if (state is LoadedState) {
+          if (state.previews.isEmpty) {
+            return SizedBox(
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Lottie.asset('assets/lotties/find.json', width: 220),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                    child: Text(
+                      S.current.not_found_movie,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
           return GridView.builder(
             cacheExtent: 1000,
             physics: const BouncingScrollPhysics(),

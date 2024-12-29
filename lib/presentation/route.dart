@@ -2,9 +2,12 @@ import 'package:cine_world/presentation/screens/favourite/favourite_screen.dart'
 import 'package:cine_world/presentation/screens/film/film_screen.dart';
 import 'package:cine_world/presentation/screens/home/home_screen.dart';
 import 'package:cine_world/presentation/screens/introduction/introduction_screen.dart';
+import 'package:cine_world/presentation/screens/language/language_screen.dart';
 import 'package:cine_world/presentation/screens/play_video/play_video_screen.dart';
 import 'package:cine_world/presentation/screens/search/search_screen.dart';
+import 'package:cine_world/presentation/screens/settings/settings_screen.dart';
 import 'package:cine_world/presentation/screens/splash/splash_screen.dart';
+import 'package:cine_world/presentation/screens/theme/theme_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
 
@@ -21,6 +24,9 @@ class MyRoute {
   static const playVideo = '/playVideo';
   static const favourite = '/favourite';
   static const search = '/search';
+  static const settings = '/settings';
+  static const theme = '/theme';
+  static const language = '/language';
 
   static Map<String, Widget Function(BuildContext context)> routes = {
     splash: (_) => const SplashScreen(),
@@ -30,6 +36,9 @@ class MyRoute {
     playVideo: (_) => const PlayVideoScreen(),
     favourite: (_) => const FavouriteScreen(),
     search: (_) => const SearchScreen(),
+    settings: (_) => const SettingsScreen(),
+    theme: (_) => const ThemeScreen(),
+    language: (_) => const LanguageScreen(),
   };
 
   static toast(String message,

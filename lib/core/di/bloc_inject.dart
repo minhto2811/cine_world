@@ -3,10 +3,10 @@ part of 'injections.dart';
 void blocInject() {
   getIt.registerFactory<SplashBloc>(() => SplashBloc());
   getIt.registerFactory<PagePreviewBloc>(() => PagePreviewBloc(
-        getPreviewLocalUseCase: getIt(),
-        insertPreviewUseCase: getIt(),
-        getPreviewsUseCase: getIt(),
-      ));
+      getPreviewLocalUseCase: getIt(),
+      insertPreviewUseCase: getIt(),
+      getPreviewsUseCase: getIt(),
+      precacheImageUseCase: getIt()));
   getIt.registerFactory<FilmBloc>(() => FilmBloc(
         checkFavouriteUseCase: getIt(),
         deleteFavouriteUseCase: getIt(),
@@ -16,7 +16,10 @@ void blocInject() {
         getFilmBySlugLocalUseCase: getIt(),
       ));
 
-  getIt.registerFactory<PlayVideoBloc>(() => PlayVideoBloc());
+  getIt.registerFactory<PlayVideoBloc>(() => PlayVideoBloc(
+        getVideoDurationUseCase: getIt(),
+        saveVideoDurationUseCase: getIt(),
+      ));
 
   getIt.registerFactory<FavouriteBloc>(() => FavouriteBloc(
         getFavouritesUseCase: getIt(),
@@ -27,5 +30,15 @@ void blocInject() {
         deleteSearchHistoryUseCase: getIt(),
         insertSearchHistoryUseCase: getIt(),
         getSearchHistoriesUseCase: getIt(),
+      ));
+
+  getIt.registerFactory<ThemeBloc>(() => ThemeBloc());
+  getIt.registerFactory<LanguageBloc>(() => LanguageBloc());
+  getIt.registerFactory<SettingsBloc>(() => SettingsBloc());
+  getIt.registerFactory<BannerBloc>(
+      () => BannerBloc(getBannerAdModUseCase: getIt()));
+  getIt.registerFactory<SttBloc>(() => SttBloc());
+  getIt.registerFactory<EpisodeBloc>(() => EpisodeBloc(
+        getVideoDurationUseCase: getIt(),
       ));
 }

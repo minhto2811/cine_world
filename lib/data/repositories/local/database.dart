@@ -1,6 +1,7 @@
 import 'package:cine_world/data/models/favourite.dart';
 import 'package:cine_world/data/models/movie.dart';
 import 'package:cine_world/data/models/search_history.dart';
+import 'package:cine_world/data/models/video_duration.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -31,6 +32,13 @@ abstract interface class Database {
   Future<void> insertSearchHistory({required SearchHistory searchHistory});
 
   Future<void> deleteSearchHistory({required Id id});
+
+  Future<void> saveCurrentPosition(
+      {required String videoUrl,
+      required int currentPosition,
+      required int maxDuration});
+
+  Future<VideoDuration?> getCurrentPosition({required String videoUrl});
 }
 
 class DatabaseImpl implements Database {
@@ -40,9 +48,13 @@ class DatabaseImpl implements Database {
 
   static Future<DatabaseImpl> create() async {
     final dir = await getApplicationDocumentsDirectory();
-    final isar = await Isar.open(
-        [PreviewSchema, MovieSchema, FavouriteSchema, SearchHistorySchema],
-        directory: dir.path);
+    final isar = await Isar.open([
+      PreviewSchema,
+      MovieSchema,
+      FavouriteSchema,
+      SearchHistorySchema,
+      VideoDurationSchema
+    ], directory: dir.path);
     return DatabaseImpl._(isar);
   }
 
@@ -120,4 +132,24 @@ class DatabaseImpl implements Database {
       await _isar.writeTxn(
           () async => await _isar.searchHistories.put(searchHistory),
           silent: true);
+
+  @override
+  Future<VideoDuration?> getCurrentPosition({required String videoUrl}) async {
+    return await _isar
+        .txn(() async => await _isar.videoDurations.get(videoUrl.hashCode));
+  }
+
+  @override
+  Future<void> saveCurrentPosition(
+      {required String videoUrl,
+        required int currentPosition,
+        required int maxDuration}) async =>
+      await _isar.writeTxn(
+          () => _isar.videoDurations.put(VideoDuration(
+              id: videoUrl.hashCode,
+              duration: currentPosition,
+              maxDuration: maxDuration)),
+          silent: true);
+
+
 }

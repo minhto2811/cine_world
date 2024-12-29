@@ -42,3 +42,9 @@ final class DeleteHistoryEvent extends SearchEvent {
   @override
   List<Object> get props => [id];
 }
+
+final class SpeechEvent extends SearchEvent {
+  const SpeechEvent();
+  @override
+  List<Object> get props => [];
+}

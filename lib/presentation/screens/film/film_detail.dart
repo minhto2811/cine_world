@@ -2,11 +2,11 @@ import 'package:cine_world/core/extensions/context.dart';
 import 'package:cine_world/data/models/movie.dart';
 import 'package:cine_world/logic/bloc/film/film_bloc.dart';
 import 'package:cine_world/presentation/components/video_youtube_parent.dart';
-import 'package:cine_world/presentation/route.dart';
 import 'package:cine_world/presentation/screens/film/film_episodes.dart';
 import 'package:cine_world/presentation/screens/film/film_poster.dart';
 import 'package:cine_world/presentation/screens/film/film_spoiler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:intl/intl.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -25,10 +25,13 @@ class _FilmDetailState extends State<FilmDetail> {
   ScrollController? _scrollController;
   late double _offset;
   bool _isPLaying = false;
+  late FlutterTts _flutterTts;
 
   @override
   void initState() {
     super.initState();
+    _flutterTts = FlutterTts();
+    _flutterTts.setLanguage('vi-VN');
     if (widget.movie.trailerUrl.isNotEmpty) {
       final id = YoutubePlayer.convertUrlToId(widget.movie.trailerUrl)!;
       _controller = YoutubePlayerController(
@@ -76,7 +79,6 @@ class _FilmDetailState extends State<FilmDetail> {
   }
 
   Widget _buildBody({Widget? player}) => CustomScrollView(
-    
         controller: _scrollController,
         slivers: [
           FilmPoster(
@@ -86,6 +88,9 @@ class _FilmDetailState extends State<FilmDetail> {
           ),
           hPad(12),
           FilmSpoiler(
+            onListen: () {
+              _flutterTts.speak(widget.movie.content);
+            },
             name: widget.movie.name,
             content: widget.movie.content,
             duration: widget.movie.time,
@@ -107,8 +112,6 @@ class _FilmDetailState extends State<FilmDetail> {
           hPad(24),
           FilmEpisodes(
             episodes: widget.movie.episodes,
-            onTap: (serverData) => MyRoute.pushNamed(
-                arguments: serverData, routeName: MyRoute.playVideo),
           ),
           hPad(24),
         ],

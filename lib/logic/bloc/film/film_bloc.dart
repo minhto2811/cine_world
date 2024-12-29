@@ -5,9 +5,12 @@ import 'package:cine_world/data/use_cases/get_film_by_slug_local_use_case.dart';
 import 'package:cine_world/data/use_cases/get_film_by_slug_use_case.dart';
 import 'package:cine_world/data/use_cases/insert_favourite_use_case.dart';
 import 'package:cine_world/data/use_cases/insert_film_local_use_case.dart';
+import 'package:cine_world/generated/l10n.dart';
+import 'package:cine_world/presentation/route.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toastification/toastification.dart';
 
 part 'film_event.dart';
 part 'film_state.dart';
@@ -40,7 +43,6 @@ class FilmBloc extends Bloc<FilmEvent, FilmState> {
   final GetFilmBySlugUseCase _getFilmBySlugUseCase;
   late String _slug;
 
-
   void _init(InitialEvent event, Emitter<FilmState> emit) async {
     emit(const LoadingState());
     try {
@@ -68,10 +70,12 @@ class FilmBloc extends Bloc<FilmEvent, FilmState> {
 
   void _favourite(FavouriteEvent event, Emitter<FilmState> emit) {
     emit(FavoriteState(isFavourite: !event.isFavourite));
-    if(event.isFavourite) {
+    if (event.isFavourite) {
       _deleteFavouriteUseCase.call(slug: _slug);
-    }else{
+      MyRoute.toast(S.current.removed_from_favorites);
+    } else {
       _insertFavouriteUseCase.call(slug: _slug);
+      MyRoute.toast(S.current.added_to_favorites, ToastificationType.success);
     }
   }
 }

@@ -13,8 +13,6 @@ class HomeTabBar extends StatelessWidget {
       isScrollable: true,
       tabAlignment: TabAlignment.start,
       padding: EdgeInsets.zero,
-      indicatorColor: const Color(0xFFFF5510),
-      labelColor: const Color(0xFFFF5510),
       tabs: [
         Tab(text: S.current.latest_release),
         Tab(text: S.current.tv_shows),

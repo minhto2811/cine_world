@@ -50,6 +50,216 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vietnamese`
+  String get vietnamese {
+    return Intl.message(
+      'Vietnamese',
+      name: 'vietnamese',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chinese`
+  String get chinese {
+    return Intl.message(
+      'Chinese',
+      name: 'chinese',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Korean`
+  String get korean {
+    return Intl.message(
+      'Korean',
+      name: 'korean',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spanish`
+  String get spanish {
+    return Intl.message(
+      'Spanish',
+      name: 'spanish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thai`
+  String get thai {
+    return Intl.message(
+      'Thai',
+      name: 'thai',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Added to favorites`
+  String get added_to_favorites {
+    return Intl.message(
+      'Added to favorites',
+      name: 'added_to_favorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Removed from favorites`
+  String get removed_from_favorites {
+    return Intl.message(
+      'Removed from favorites',
+      name: 'removed_from_favorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Listening...`
+  String get listening {
+    return Intl.message(
+      'Listening...',
+      name: 'listening',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn't find a movie that matches the keyword`
+  String get not_found_movie {
+    return Intl.message(
+      'Didn\'t find a movie that matches the keyword',
+      name: 'not_found_movie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Feature not available on your device`
+  String get feature_not_available {
+    return Intl.message(
+      'Feature not available on your device',
+      name: 'feature_not_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share with friends`
+  String get share {
+    return Intl.message(
+      'Share with friends',
+      name: 'share',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Support`
+  String get support {
+    return Intl.message(
+      'Support',
+      name: 'support',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorites list is empty.`
+  String get favorites_list_empty {
+    return Intl.message(
+      'Favorites list is empty.',
+      name: 'favorites_list_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Language`
+  String get change_language {
+    return Intl.message(
+      'Change Language',
+      name: 'change_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change your app theme for success`
+  String get change_theme_success {
+    return Intl.message(
+      'Change your app theme for success',
+      name: 'change_theme_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply`
+  String get apply {
+    return Intl.message(
+      'Apply',
+      name: 'apply',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Theme`
+  String get change_theme {
+    return Intl.message(
+      'Change Theme',
+      name: 'change_theme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `App Theme`
+  String get app_theme {
+    return Intl.message(
+      'App Theme',
+      name: 'app_theme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Favourite`
   String get favourite {
     return Intl.message(
@@ -387,6 +597,11 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'es'),
+      Locale.fromSubtags(languageCode: 'ko'),
+      Locale.fromSubtags(languageCode: 'th'),
+      Locale.fromSubtags(languageCode: 'vi'),
+      Locale.fromSubtags(languageCode: 'zh'),
     ];
   }
 

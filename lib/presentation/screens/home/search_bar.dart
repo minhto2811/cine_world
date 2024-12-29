@@ -32,7 +32,7 @@ class HomeSearchBar extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed:() => MyRoute.pushNamed(routeName: MyRoute.settings),
           icon: const Icon(
             Icons.settings,
             color: Colors.white,

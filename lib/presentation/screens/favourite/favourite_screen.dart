@@ -1,10 +1,12 @@
 import 'package:cine_world/core/di/injections.dart';
+import 'package:cine_world/core/extensions/context.dart';
 import 'package:cine_world/generated/l10n.dart';
 import 'package:cine_world/logic/bloc/favourite/favourite_bloc.dart';
 import 'package:cine_world/presentation/components/preview_film.dart';
 import 'package:cine_world/presentation/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({super.key});
@@ -47,6 +49,24 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           buildWhen: (previous, current) => current is FavouriteLoadedState,
           builder: (context, state) {
             if (state is FavouriteLoadedState) {
+              if (state.previews.isEmpty) {
+                return SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Lottie.asset('assets/lotties/empty.json', width: 220),
+                      Text(
+                        S.current.favorites_list_empty,
+                        style: context.textTheme.bodyMedium,
+                      ),
+                      const SizedBox(height: 160),
+                    ],
+                  ),
+                );
+              }
               return GridView.builder(
                 cacheExtent: 1000,
                 physics: const BouncingScrollPhysics(),

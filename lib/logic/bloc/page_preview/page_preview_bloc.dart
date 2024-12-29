@@ -4,6 +4,7 @@ import 'package:cine_world/data/models/preview.dart';
 import 'package:cine_world/data/use_cases/get_previews_local_use_case.dart';
 import 'package:cine_world/data/use_cases/get_previews_use_case.dart';
 import 'package:cine_world/data/use_cases/insert_previews_local_use_case.dart';
+import 'package:cine_world/data/use_cases/precache_image_use_case.dart';
 import 'package:cine_world/presentation/route.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,17 +15,20 @@ part 'page_preview_state.dart';
 class PagePreviewBloc extends Bloc<PagePreviewEvent, PagePreviewState> {
   PagePreviewBloc({
     required GetPreviewsUseCase getPreviewsUseCase,
+    required PrecacheImageUseCase precacheImageUseCase,
     required GetPreviewsLocalUseCase getPreviewLocalUseCase,
     required InsertPreviewLocalUseCase insertPreviewUseCase,
   })  : _getPreviewsUseCase = getPreviewsUseCase,
         _insertPreviewUseCase = insertPreviewUseCase,
         _getPreviewsLocalUseCase = getPreviewLocalUseCase,
+        _precacheImageUseCase = precacheImageUseCase,
         super(PageInitial()) {
     on<InitialEvent>(_init);
     on<LoadMoreEvent>(_loadMore);
     on<NavigateEvent>(_navigate);
   }
 
+  final PrecacheImageUseCase _precacheImageUseCase;
   final GetPreviewsLocalUseCase _getPreviewsLocalUseCase;
   final InsertPreviewLocalUseCase _insertPreviewUseCase;
   final GetPreviewsUseCase _getPreviewsUseCase;
@@ -50,6 +54,7 @@ class PagePreviewBloc extends Bloc<PagePreviewEvent, PagePreviewState> {
       _movies.addAll(data);
       emit(LoadedState(movies: _movies.toList()));
       _insertPreviewUseCase.call(previews: data);
+    //  _precacheImageUseCase.call(data.map((e) => e.posterUrl).toList());
     } catch (e) {
       final type = _path.split('/').last;
       final data = await _getPreviewsLocalUseCase.call(

@@ -22,6 +22,7 @@ class _FilmScreenState extends State<FilmScreen> {
     _bloc.add(InitialEvent(context: context));
   }
 
+
   @override
   void dispose() {
     _bloc.close();

@@ -33,10 +33,9 @@ class _SearchScreenState extends State<SearchScreen> {
       top: false,
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
           title: SearchView(
-              controller: _bloc.controller,
               onTap: () => _bloc.add(const HistoryEvent(isShow: true)),
+              onSpeech: () => _bloc.add(const SpeechEvent()),
               onSearch: (value) =>
                   _bloc.add(SearchByKeyWordEvent(keyword: value))),
         ),

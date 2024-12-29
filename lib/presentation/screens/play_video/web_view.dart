@@ -17,7 +17,9 @@ class WebView extends StatelessWidget {
           if (state is LoadedState) {
             return Chewie(controller: state.controller);
           }
-          return const SizedBox();
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         });
   }
 }

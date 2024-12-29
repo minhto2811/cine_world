@@ -23,16 +23,31 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actors": MessageLookupByLibrary.simpleMessage("Actors"),
+        "added_to_favorites":
+            MessageLookupByLibrary.simpleMessage("Added to favorites"),
         "an_error_occurred": MessageLookupByLibrary.simpleMessage(
             "An error occurred, please try again."),
         "app_name": MessageLookupByLibrary.simpleMessage("Cine World"),
+        "app_theme": MessageLookupByLibrary.simpleMessage("App Theme"),
+        "apply": MessageLookupByLibrary.simpleMessage("Apply"),
         "cartoons": MessageLookupByLibrary.simpleMessage("Cartoons"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "change_language":
+            MessageLookupByLibrary.simpleMessage("Change Language"),
+        "change_theme": MessageLookupByLibrary.simpleMessage("Change Theme"),
+        "change_theme_success": MessageLookupByLibrary.simpleMessage(
+            "Change your app theme for success"),
+        "chinese": MessageLookupByLibrary.simpleMessage("Chinese"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
         "director": MessageLookupByLibrary.simpleMessage("Director"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "duration": MessageLookupByLibrary.simpleMessage("Duration"),
+        "english": MessageLookupByLibrary.simpleMessage("English"),
+        "favorites_list_empty":
+            MessageLookupByLibrary.simpleMessage("Favorites list is empty."),
         "favourite": MessageLookupByLibrary.simpleMessage("Favourite"),
+        "feature_not_available": MessageLookupByLibrary.simpleMessage(
+            "Feature not available on your device"),
         "hint_slogan": MessageLookupByLibrary.simpleMessage(
             "Step into a world of endless stories and unforgettable moments, where every movie you watch takes you on a journey like no other."),
         "hold_on": MessageLookupByLibrary.simpleMessage(
@@ -50,21 +65,34 @@ class MessageLookup extends MessageLookupByLibrary {
         "intro_title_3": MessageLookupByLibrary.simpleMessage(
             "Personalized Recommendations"),
         "intro_title_4": MessageLookupByLibrary.simpleMessage("Movie Library"),
+        "korean": MessageLookupByLibrary.simpleMessage("Korean"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "latest_release":
             MessageLookupByLibrary.simpleMessage("Latest Release"),
+        "listening": MessageLookupByLibrary.simpleMessage("Listening..."),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
         "movies_you_may_like":
             MessageLookupByLibrary.simpleMessage("Movies You May Like"),
+        "not_found_movie": MessageLookupByLibrary.simpleMessage(
+            "Didn\'t find a movie that matches the keyword"),
         "quality": MessageLookupByLibrary.simpleMessage("Quality"),
         "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
+        "removed_from_favorites":
+            MessageLookupByLibrary.simpleMessage("Removed from favorites"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "series": MessageLookupByLibrary.simpleMessage("Series"),
         "server_name": MessageLookupByLibrary.simpleMessage("Server Name"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "share": MessageLookupByLibrary.simpleMessage("Share with friends"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "slogan": MessageLookupByLibrary.simpleMessage(
             "Watch movies, enjoy every moment."),
+        "spanish": MessageLookupByLibrary.simpleMessage("Spanish"),
         "spoiler": MessageLookupByLibrary.simpleMessage("Spoiler"),
+        "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "thai": MessageLookupByLibrary.simpleMessage("Thai"),
         "tv_shows": MessageLookupByLibrary.simpleMessage("TV Shows"),
+        "vietnamese": MessageLookupByLibrary.simpleMessage("Vietnamese"),
         "year": MessageLookupByLibrary.simpleMessage("Year")
       };
 }

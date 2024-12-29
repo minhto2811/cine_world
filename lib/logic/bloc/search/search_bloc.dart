@@ -1,3 +1,4 @@
+import 'package:cine_world/core/extensions/context.dart';
 import 'package:cine_world/data/models/preview.dart';
 import 'package:cine_world/data/models/search_history.dart';
 import 'package:cine_world/data/use_cases/delete_search_history_use_case.dart';
@@ -28,6 +29,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<NavigateEvent>(_navigate);
     on<HistoryEvent>(_showHistory);
     on<DeleteHistoryEvent>(_deleteHistory);
+    on<SpeechEvent>(_speech);
   }
 
   final DeleteSearchHistoryUseCase _deleteSearchHistoryUseCase;
@@ -36,12 +38,17 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final InsertSearchHistoryUseCase _insertSearchHistoryUseCase;
   final SearchPreviewsUseCase _searchPreviewsUseCase;
 
-  final TextEditingController controller = TextEditingController();
+  void _speech(SpeechEvent event, Emitter<SearchState> emit) async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    final text = await MyRoute.context.speech;
+    if (text == null) return;
+    add(SearchByKeyWordEvent(keyword: text));
+  }
 
   void _search(SearchByKeyWordEvent event, Emitter<SearchState> emit) async {
+    if (event.keyword.isEmpty) return;
     add(const HistoryEvent(isShow: false));
     emit(const LoadingState());
-    controller.text = event.keyword;
     FocusManager.instance.primaryFocus?.unfocus();
     try {
       final data =
@@ -72,11 +79,5 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       DeleteHistoryEvent event, Emitter<SearchState> emit) async {
     await _deleteSearchHistoryUseCase.call(id: event.id);
     add(const HistoryEvent(isShow: true));
-  }
-
-  @override
-  Future<void> close() {
-    controller.dispose();
-    return super.close();
   }
 }

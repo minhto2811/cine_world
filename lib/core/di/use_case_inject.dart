@@ -42,4 +42,14 @@ void useCaseInject() {
 
   getIt.registerLazySingleton<DeleteSearchHistoryUseCase>(
       () => DeleteSearchHistoryUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<PrecacheImageUseCase>(
+      () => PrecacheImageUseCase());
+
+  getIt.registerLazySingleton<GetBannerAdUseCase>(
+      () => GetBannerAdUseCase(adModService: getIt()));
+  getIt.registerLazySingleton<GetVideoDurationUseCase>(
+      () => GetVideoDurationUseCase(database: getIt()));
+  getIt.registerLazySingleton<SaveVideoDurationUseCase>(
+      () => SaveVideoDurationUseCase(database: getIt()));
 }

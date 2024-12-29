@@ -15,7 +15,7 @@ final class TitleState extends PlayVideoState {
   const TitleState({ this.title});
 
   @override
-  List<Object> get props => [title!];
+  List<Object?> get props => [title];
 }
 
 

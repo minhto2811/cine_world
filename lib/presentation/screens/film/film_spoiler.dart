@@ -13,6 +13,7 @@ class FilmSpoiler extends StatelessWidget {
       required this.actors,
       required this.director,
       required this.year,
+      this.onListen,
       required this.quality});
 
   final String name;
@@ -24,6 +25,7 @@ class FilmSpoiler extends StatelessWidget {
   final String director;
   final int year;
   final String quality;
+  final VoidCallback? onListen;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +40,15 @@ class FilmSpoiler extends StatelessWidget {
             const SizedBox(height: 12),
             RichText(
                 text: TextSpan(children: [
+              WidgetSpan(
+                  child: InkWell(
+                      onTap: onListen,
+                      child: const Icon(
+                        Icons.spatial_audio_off_outlined,
+                        size: 44,
+                      ))),
               TextSpan(
-                  text: '${S.current.spoiler}: ',
+                  text: '  ${S.current.spoiler}: ',
                   style: context.textTheme.titleMedium),
               TextSpan(
                 text: content,
