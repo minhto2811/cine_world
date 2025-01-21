@@ -16,8 +16,8 @@ class ApiServiceImpl implements ApiService {
   void _init() {
     _dio = Dio(BaseOptions(
       baseUrl: 'https://phimapi.com',
-      receiveTimeout: const Duration(seconds: 5),
-      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 15),
+      connectTimeout: const Duration(seconds: 15),
       contentType: 'application/json',
       responseType: ResponseType.json,
     ));

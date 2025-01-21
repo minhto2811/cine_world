@@ -46,8 +46,8 @@ class FilmEpisode extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               addAutomaticKeepAlives: true,
               itemCount: episode.serverData!.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: episode.serverData!.length > 4 ? 4 : 3,
                   mainAxisSpacing: 12,
                   crossAxisSpacing: 12,
                   childAspectRatio: 2.5),
@@ -98,6 +98,7 @@ class _ButtonEpisodeState extends State<ButtonEpisode> {
               borderRadius: BorderRadius.circular(16),
               elevation: 10,
               child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     gradient: LinearGradient(
@@ -119,6 +120,7 @@ class _ButtonEpisodeState extends State<ButtonEpisode> {
                   style: context.textTheme.bodyMedium!.copyWith(
                     color: Colors.white,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),

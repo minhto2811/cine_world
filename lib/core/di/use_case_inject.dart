@@ -52,4 +52,10 @@ void useCaseInject() {
       () => GetVideoDurationUseCase(database: getIt()));
   getIt.registerLazySingleton<SaveVideoDurationUseCase>(
       () => SaveVideoDurationUseCase(database: getIt()));
+
+  getIt.registerLazySingleton<CheckFirstTimeUseCase>(
+      () => CheckFirstTimeUseCase());
+
+  getIt.registerLazySingleton<GetNativeAdUseCase>(
+      () => GetNativeAdUseCase(adModService: getIt()));
 }

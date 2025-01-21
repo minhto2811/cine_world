@@ -79,6 +79,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
         "removed_from_favorites":
             MessageLookupByLibrary.simpleMessage("Removed from favorites"),
+        "saturday_notification_content": MessageLookupByLibrary.simpleMessage(
+            "Enjoy your weekend with the latest blockbuster! Tap to watch!"),
+        "saturday_notification_title":
+            MessageLookupByLibrary.simpleMessage("Weekend Movie Picks"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "series": MessageLookupByLibrary.simpleMessage("Series"),
         "server_name": MessageLookupByLibrary.simpleMessage("Server Name"),
@@ -89,10 +93,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "Watch movies, enjoy every moment."),
         "spanish": MessageLookupByLibrary.simpleMessage("Spanish"),
         "spoiler": MessageLookupByLibrary.simpleMessage("Spoiler"),
+        "sunday_notification_content": MessageLookupByLibrary.simpleMessage(
+            "New episode is out! Don’t miss the excitement!"),
+        "sunday_notification_title":
+            MessageLookupByLibrary.simpleMessage("Passion Reminder"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
         "thai": MessageLookupByLibrary.simpleMessage("Thai"),
         "tv_shows": MessageLookupByLibrary.simpleMessage("TV Shows"),
         "vietnamese": MessageLookupByLibrary.simpleMessage("Vietnamese"),
+        "wednesday_notification_content": MessageLookupByLibrary.simpleMessage(
+            "Spice up your week with a great movie! Watch now!"),
+        "wednesday_notification_title":
+            MessageLookupByLibrary.simpleMessage("Midweek Movie Break!"),
         "year": MessageLookupByLibrary.simpleMessage("Year")
       };
 }

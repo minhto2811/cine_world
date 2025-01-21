@@ -110,6 +110,66 @@ class S {
     );
   }
 
+  /// `Midweek Movie Break!`
+  String get wednesday_notification_title {
+    return Intl.message(
+      'Midweek Movie Break!',
+      name: 'wednesday_notification_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spice up your week with a great movie! Watch now!`
+  String get wednesday_notification_content {
+    return Intl.message(
+      'Spice up your week with a great movie! Watch now!',
+      name: 'wednesday_notification_content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weekend Movie Picks`
+  String get saturday_notification_title {
+    return Intl.message(
+      'Weekend Movie Picks',
+      name: 'saturday_notification_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enjoy your weekend with the latest blockbuster! Tap to watch!`
+  String get saturday_notification_content {
+    return Intl.message(
+      'Enjoy your weekend with the latest blockbuster! Tap to watch!',
+      name: 'saturday_notification_content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passion Reminder`
+  String get sunday_notification_title {
+    return Intl.message(
+      'Passion Reminder',
+      name: 'sunday_notification_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New episode is out! Don’t miss the excitement!`
+  String get sunday_notification_content {
+    return Intl.message(
+      'New episode is out! Don’t miss the excitement!',
+      name: 'sunday_notification_content',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Added to favorites`
   String get added_to_favorites {
     return Intl.message(

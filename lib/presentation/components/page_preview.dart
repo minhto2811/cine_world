@@ -64,6 +64,7 @@ class _PagePreviewState extends State<PagePreview>
             thumbVisibility: true,
             interactive: true,
             child: GridView.builder(
+              addAutomaticKeepAlives: true,
               cacheExtent: 1000,
               physics: const BouncingScrollPhysics(),
               semanticChildCount: state.movies.length,

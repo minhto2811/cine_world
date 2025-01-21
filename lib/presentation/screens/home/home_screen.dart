@@ -1,9 +1,9 @@
 import 'package:cine_world/logic/cubit/language/language_cubit.dart';
-import 'package:cine_world/presentation/components/banner_widget.dart';
 import 'package:cine_world/presentation/screens/home/home_pages.dart';
 import 'package:cine_world/presentation/screens/home/home_tab_bar.dart';
 import 'package:cine_world/presentation/screens/home/search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ads_plugin/flutter_ads_plugin.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +13,8 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen>
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   late TabController _tabController;
   late PageController _pageController;
 
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     context.watch<LanguageCubit>().state;
     return SafeArea(
         top: false,
@@ -53,10 +55,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               children: [
                 HomeTabBar(tabController: _tabController),
                 HomePages(pageController: _pageController),
-                const BannerWidget(),
+                const FlutterAdsBanner(),
               ],
             ),
           ),
         ));
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

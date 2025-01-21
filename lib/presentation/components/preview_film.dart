@@ -2,13 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cine_world/core/extensions/context.dart';
 import 'package:cine_world/data/models/preview.dart';
 import 'package:flutter/material.dart';
-
+import 'package:shimmer/shimmer.dart';
 class PreviewFilm extends StatelessWidget {
   const PreviewFilm({super.key, required this.model, required this.onTap});
 
   final Preview model;
   final VoidCallback onTap;
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +26,25 @@ class PreviewFilm extends StatelessWidget {
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            image: DecorationImage(
-                image: CachedNetworkImageProvider(posterUrl),
-                fit: BoxFit.cover),
           ),
           child: Stack(
             children: [
+              CachedNetworkImage(
+                imageUrl: posterUrl,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+                placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: Colors.grey,
+                  highlightColor: Colors.white,
+                  child: Container(
+                    color: Colors.grey,
+                  )
+                ),
+                errorWidget:  (context, url, error) => Image.asset(
+                    "assets/images/imgnf.png"
+                ),
+              ),
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(

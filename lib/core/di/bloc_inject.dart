@@ -1,7 +1,9 @@
 part of 'injections.dart';
 
 void blocInject() {
-  getIt.registerFactory<SplashBloc>(() => SplashBloc());
+  getIt.registerFactory<SplashBloc>(() => SplashBloc(
+        checkFirstTimeUseCase: getIt(),
+      ));
   getIt.registerFactory<PagePreviewBloc>(() => PagePreviewBloc(
       getPreviewLocalUseCase: getIt(),
       insertPreviewUseCase: getIt(),
@@ -35,8 +37,6 @@ void blocInject() {
   getIt.registerFactory<ThemeBloc>(() => ThemeBloc());
   getIt.registerFactory<LanguageBloc>(() => LanguageBloc());
   getIt.registerFactory<SettingsBloc>(() => SettingsBloc());
-  getIt.registerFactory<BannerBloc>(
-      () => BannerBloc(getBannerAdModUseCase: getIt()));
   getIt.registerFactory<SttBloc>(() => SttBloc());
   getIt.registerFactory<EpisodeBloc>(() => EpisodeBloc(
         getVideoDurationUseCase: getIt(),

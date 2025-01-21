@@ -6,6 +6,7 @@ import 'package:cine_world/presentation/screens/film/film_episodes.dart';
 import 'package:cine_world/presentation/screens/film/film_poster.dart';
 import 'package:cine_world/presentation/screens/film/film_spoiler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ads_plugin/flutter_ads_plugin.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:intl/intl.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -64,6 +65,7 @@ class _FilmDetailState extends State<FilmDetail> {
   void dispose() {
     _controller?.dispose();
     _scrollController?.dispose();
+    _flutterTts.stop();
     super.dispose();
   }
 
@@ -114,6 +116,7 @@ class _FilmDetailState extends State<FilmDetail> {
             episodes: widget.movie.episodes,
           ),
           hPad(24),
+          const SliverToBoxAdapter(child: FlutterAdsNative()),
         ],
       );
 

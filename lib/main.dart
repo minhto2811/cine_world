@@ -1,6 +1,7 @@
 import 'package:cine_world/core/di/injections.dart';
 import 'package:cine_world/core/extensions/string.dart';
 import 'package:cine_world/core/theme/themes.dart';
+import 'package:cine_world/data/services/notificarion_service.dart';
 import 'package:cine_world/logic/cubit/language/language_cubit.dart';
 import 'package:cine_world/logic/cubit/theme/theme_cubit.dart';
 import 'package:cine_world/presentation/route.dart';
@@ -17,6 +18,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
   await appInject();
+  await NotificationService.initialize();
   runApp(const MyApp());
 }
 

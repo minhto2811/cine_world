@@ -29,9 +29,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   void _supportEvent(SupportEvent event, Emitter<SettingsState> emit) {
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: 'minhto28.dev@gmail.com',
+      path: 'mgok0328@gmail.com',
       query: _encodeQueryParameters(<String, String>{
-        'subject': 'Reporting a Bug in Cine World App!',
+        'subject': 'Mua source code liên hệ theo email này!',
       }),
     );
     launchUrl(emailLaunchUri);
